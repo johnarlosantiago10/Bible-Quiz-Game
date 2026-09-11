@@ -145,6 +145,14 @@ function showResult() {
   quizScreen.classList.remove("active");
   resultScreen.classList.add("active");
 
+  const percentage = (score / quizQuestions.length) * 100;
+
+  if (percentage === 100) {
+    resultMessage.textContent = "Excellent! Perfect score! 🎉📖 God bless you!";
+  } else {
+    resultMessage.textContent = "Keep studying God's Word! 📖";
+  }
+
   finalScoreSpan.textContent = score;
 }
 
