@@ -71,18 +71,17 @@ totalQuestionsSpan.textContent = quizQuestions.length;
 maxScoreSpan.textContent = quizQuestions.length;
 
 startButton.addEventListener("click", startQuiz);
-restartButton.addEventListener("click", restartQuiz);
 
 function startQuiz() {
   currentQuestionIndex = 0;
-  scoreSpan.textContent = 0;
+  score = 0;
+  scoreSpan.textContent = score;
 
   startScreen.classList.remove("active");
   quizScreen.classList.add("active");
 
   showQuestion();
 }
-
 function showQuestion() {
   answerDisable = false;
 
@@ -132,15 +131,11 @@ function selectedAnswer(event) {
 
   setTimeout(() => {
     currentQuestionIndex++;
-
     if (currentQuestionIndex < quizQuestions.length) {
       showQuestion();
-    } else {
-      showResult();
-    }
+    } else showResult();
   }, 1000);
 }
-
 function showResult() {
   quizScreen.classList.remove("active");
   resultScreen.classList.add("active");
@@ -148,9 +143,13 @@ function showResult() {
   const percentage = (score / quizQuestions.length) * 100;
 
   if (percentage === 100) {
-    resultMessage.textContent = "Excellent! Perfect score! 🎉📖 God bless you!";
+    resultMessage.textContent = `🎉 PERFECT SCORE! 🎉
+Amazing! You got all 5 questions correct! 📖✨
+Keep learning and growing in God’s Word! 🙏`;
   } else {
-    resultMessage.textContent = "Keep studying God's Word! 📖";
+    resultMessage.textContent = `📖 GOOD JOB!
+You did your best! Keep studying the Bible and try again. 🙏✨
+Every question is an opportunity to learn something new!`;
   }
 
   finalScoreSpan.textContent = score;
@@ -161,3 +160,5 @@ function restartQuiz() {
 
   startQuiz();
 }
+
+restartButton.addEventListener("click", restartQuiz);
